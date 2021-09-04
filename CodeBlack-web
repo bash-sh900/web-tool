@@ -76,9 +76,9 @@ case $_l in
 	"-f")
 	xdg-open https://www.facebook.com/profile.php?id=100068360715822;;
 	"-c")
-	xdg-open ;;
-	"-g")
-	xdg-open;;
+	xdg-open https://youtube.com/channel/UC-GczsRgoNNh00ql9vyhYgA;;
+	"-g)
+	xdg-open https://github.com/bash-sh900/web-tool;;
 	  *)
 	echo -e "CodeBlack-web: invalid options $_l"
 	echo -e "CodeBlack-web: Try --help";;
