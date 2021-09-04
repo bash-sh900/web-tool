@@ -1,14 +1,12 @@
 # web-tool
 <h1>commands</h1>
-<br>
-<pre>
+
 $ git clone https://github.com/bash-sh900/web-tool
-<pre>
+<br>
 $ cd web-tool
-<pre>
+<br>
 $ cp CodeBlack-web ../usr/bin
-<pre>
+<br>
 $ chmod 777 ../usr/bin/CodeBlack-web
-<pre>
+<br>
 $ CodeBlack-web --help
-<pre>
