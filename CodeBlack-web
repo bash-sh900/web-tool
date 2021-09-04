@@ -1,0 +1,85 @@
+#!/bin/bash
+_l=$1
+link=$2
+_f=$3
+file=$4
+red='\e[31m'
+green='\e[32m'
+yellow='\e[33m'
+cyan='\e[36m'
+blue='\e[1;34m'
+white='\e[0m'
+function start(){
+	ots=$(uname -o)
+	if [ "$ots" = 'Android' ];
+	then
+		which curl > /dev/null
+		if [ '$?' = 1 ];
+		then
+			pkg install curl -y
+		else
+			sleep 1
+		fi
+	else
+		which curl > /dev/null
+		if [ '$?' = 1 ];
+		then
+			sudo apt install curl -y
+		fi
+	fi
+	if [ $link ];
+	then
+		if [ $file ];
+		then
+			if [ -f $file ];
+			then
+				sleep 1
+			else
+				echo CodeBlack-web: file not Unsupported
+				exit 1
+			fi
+			for i in $(cat $file):
+			do
+				ox=$(curl -I $link$i 2>&1 | awk '/HTTP\// {print $2}')
+				if [ "$ox" = 200 ];
+				then
+					echo -e "\e[1;32m[\e[1;33m√\e[1;32m] found\e[4;32m $link$i\e[0m"
+				else
+					echo -e "\e[1;31m[\e[1;37m+\e[1;31m] not found $link$i"
+				fi
+			done
+		else
+			echo CodeBlack-web: file not found
+		fi
+	else
+		exit 1
+	fi
+}
+function help(){
+echo -e """$white Usage:$green CodeBlack-web$white [$red CodeBlack-web$white ] [$red options$white ]
+$red Options:
+$yellow        -l$cyan Add Website Link
+$yellow        -f$cyan Enter Your Guess file
+$yellow        -v$cyan Print Version Tool
+$yellow        -f$cyan My Acount a Facebook
+$yellow        -c$cyan My Channel a YouTube
+$yellow        -g$cyan My Account a Github"""
+
+}
+case $_l in
+	"-l")
+	start;;
+	"--help"|"-h")
+	help;;
+	"-v"|"-V"|"--version")
+	echo CodeBlack-web 0.1.2;;
+	"-f")
+	xdg-open https://www.facebook.com/profile.php?id=100068360715822;;
+	"-c")
+	xdg-open ;;
+	"-g")
+	xdg-open;;
+	  *)
+	echo -e "CodeBlack-web: invalid options $_l"
+	echo -e "CodeBlack-web: Try --help";;
+esac
